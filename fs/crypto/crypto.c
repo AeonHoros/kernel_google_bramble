@@ -250,6 +250,9 @@ EXPORT_SYMBOL(fscrypt_encrypt_block_inplace);
  * This is for use by the filesystem's ->readpages() method.
  *
  * Return: 0 on success; -errno on failure
+/*
+ * Validate dentries in encrypted directories to make sure we aren't potentially
+ * caching stale dentries after a key has been added.
  */
 int fscrypt_decrypt_pagecache_blocks(struct page *page, unsigned int len,
 				     unsigned int offs)
